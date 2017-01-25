@@ -13,4 +13,6 @@
     <string name="NewEntryTotalLabel">Totalt Belopp (inkl. moms):</string>
     <string name="NewEntryTaxLabel">Moms:</string>
     <string name="NewEntryAddBtnLabel">Lägg till händelse</string>
+    <string name="noValue">-</string>
+    <string name="NewEntryTotalExMomsLabel">Totalt Belopp (exl. moms):</string>
 </resources>

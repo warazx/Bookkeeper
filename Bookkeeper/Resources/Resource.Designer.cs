@@ -75,17 +75,23 @@ namespace Bookkeeper
 			// aapt resource value: 0x7f050012
 			public const int NewEntrySpinAccount = 2131034130;
 			
-			// aapt resource value: 0x7f050018
-			public const int NewEntrySpinTax = 2131034136;
+			// aapt resource value: 0x7f05001b
+			public const int NewEntrySpinTax = 2131034139;
 			
 			// aapt resource value: 0x7f05000f
 			public const int NewEntrySpinType = 2131034127;
 			
-			// aapt resource value: 0x7f050017
-			public const int NewEntryTaxLabel = 2131034135;
+			// aapt resource value: 0x7f05001a
+			public const int NewEntryTaxLabel = 2131034138;
 			
 			// aapt resource value: 0x7f050015
 			public const int NewEntryTotal = 2131034133;
+			
+			// aapt resource value: 0x7f050018
+			public const int NewEntryTotalExMoms = 2131034136;
+			
+			// aapt resource value: 0x7f050017
+			public const int NewEntryTotalExMomsLabel = 2131034135;
 			
 			// aapt resource value: 0x7f050014
 			public const int NewEntryTotalLabel = 2131034132;
@@ -96,8 +102,8 @@ namespace Bookkeeper
 			// aapt resource value: 0x7f050004
 			public const int RBtnGroup = 2131034116;
 			
-			// aapt resource value: 0x7f05001a
-			public const int SpinnerItemText = 2131034138;
+			// aapt resource value: 0x7f05001d
+			public const int SpinnerItemText = 2131034141;
 			
 			// aapt resource value: 0x7f050002
 			public const int createReportsBtn = 2131034114;
@@ -111,17 +117,20 @@ namespace Bookkeeper
 			// aapt resource value: 0x7f05000a
 			public const int linearLayoutDescription = 2131034122;
 			
-			// aapt resource value: 0x7f050016
-			public const int linearLayoutTax = 2131034134;
+			// aapt resource value: 0x7f050019
+			public const int linearLayoutTax = 2131034137;
 			
 			// aapt resource value: 0x7f050013
 			public const int linearLayoutTotal = 2131034131;
 			
+			// aapt resource value: 0x7f050016
+			public const int linearLayoutTotalExMoms = 2131034134;
+			
 			// aapt resource value: 0x7f05000d
 			public const int linearLayoutType = 2131034125;
 			
-			// aapt resource value: 0x7f050019
-			public const int newEntryAddEntryBtn = 2131034137;
+			// aapt resource value: 0x7f05001c
+			public const int newEntryAddEntryBtn = 2131034140;
 			
 			// aapt resource value: 0x7f050000
 			public const int newEntryBtn = 2131034112;
@@ -209,11 +218,17 @@ namespace Bookkeeper
 			// aapt resource value: 0x7f04000b
 			public const int NewEntryTaxLabel = 2130968587;
 			
+			// aapt resource value: 0x7f04000e
+			public const int NewEntryTotalExMomsLabel = 2130968590;
+			
 			// aapt resource value: 0x7f04000a
 			public const int NewEntryTotalLabel = 2130968586;
 			
 			// aapt resource value: 0x7f040008
 			public const int NewEntryTypeLabel = 2130968584;
+			
+			// aapt resource value: 0x7f04000d
+			public const int noValue = 2130968589;
 			
 			static String()
 			{

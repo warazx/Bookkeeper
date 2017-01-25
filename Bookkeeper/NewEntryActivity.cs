@@ -26,6 +26,7 @@ namespace Bookkeeper
         Spinner typeSpin;
         Spinner accountSpin;
         EditText totalText;
+        TextView totalExMoms;
         Spinner taxSpin;
         Button addBtn;
 
@@ -34,14 +35,41 @@ namespace Bookkeeper
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.NewEntry);
             bindLayout();
+            entry = new Entry();
 
             typeSpin.Adapter = GetArrayAdapter(bm.IncomeAccounts);
             accountSpin.Adapter = GetArrayAdapter(bm.MoneyAccounts);
             taxSpin.Adapter = GetArrayAdapter(bm.TaxRates);
-            entry = new Entry();
+            
             rBtnGroup.CheckedChange += RBtnGroup_CheckedChange;
             addBtn.Click += AddBtn_Click;
             dateBtn.Click += DateBtn_Click;
+            totalText.TextChanged += TotalText_TextChanged;
+            taxSpin.ItemSelected += TaxSpin_ItemSelected;
+        }
+
+        private void TaxSpin_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            ChangeTotalExMomsText();
+        }
+
+        private void TotalText_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        {
+            ChangeTotalExMomsText();
+        }
+
+        private void ChangeTotalExMomsText()
+        {
+            try
+            {
+                double tax = bm.TaxRates[taxSpin.SelectedItemPosition].Rate;
+                double exMomsTotal = int.Parse(totalText.Text) / (1 + tax);
+                totalExMoms.Text = "" + Math.Round(exMomsTotal, 2);
+            }
+            catch (Exception)
+            {
+                totalExMoms.Text = Resources.GetString(Resource.String.noValue);
+            }
         }
 
         private void DateBtn_Click(object sender, EventArgs e)
@@ -63,7 +91,7 @@ namespace Bookkeeper
                 bm.IncomeAccounts[typeSpin.SelectedItemPosition].Number :
                 bm.ExpenseAccounts[typeSpin.SelectedItemPosition].Number);            
             int accountID = bm.MoneyAccounts[accountSpin.SelectedItemPosition].Number;
-            int total = Int32.Parse(totalText.Text);
+            int total = int.Parse(totalText.Text);
             double taxRate = bm.TaxRates[taxSpin.SelectedItemPosition].Rate;
 
             Entry newEntry = new Entry(isIncome, date, description, typeID, accountID, total, taxRate);
@@ -100,6 +128,7 @@ namespace Bookkeeper
             totalText = FindViewById<EditText>(Resource.Id.NewEntryTotal);
             taxSpin = FindViewById<Spinner>(Resource.Id.NewEntrySpinTax);
             addBtn = FindViewById<Button>(Resource.Id.newEntryAddEntryBtn);
+            totalExMoms = FindViewById<TextView>(Resource.Id.NewEntryTotalExMoms);
         }
     }
 }

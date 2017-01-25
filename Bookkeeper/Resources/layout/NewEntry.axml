@@ -104,6 +104,22 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/linearLayoutTotalExMoms">
+        <TextView
+            android:text="@string/NewEntryTotalExMomsLabel"
+            android:id="@+id/NewEntryTotalExMomsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:text="@string/noValue"
+            android:id="@+id/NewEntryTotalExMoms"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/linearLayoutTax">
         <TextView
             android:text="@string/NewEntryTaxLabel"
