@@ -15,7 +15,7 @@ namespace Bookkeeper.Model
     class Entry
     {
         public bool IsIncome { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         public string Description { get; set; }
         public int TypeID { get; set; }
         public int AccountID { get; set; }
@@ -25,7 +25,7 @@ namespace Bookkeeper.Model
         public Entry()
         {
             IsIncome = true;
-            Date = "";
+            Date = DateTime.Now;
             Description = "";
             TypeID = 0;
             AccountID = 0;
@@ -33,7 +33,7 @@ namespace Bookkeeper.Model
             TaxRate = 0;
         }
 
-        public Entry(bool isIncome, string date, string description, int typeID, int accountID, int total, double taxRate)
+        public Entry(bool isIncome, DateTime date, string description, int typeID, int accountID, int total, double taxRate)
         {
             IsIncome = isIncome;
             Date = date;

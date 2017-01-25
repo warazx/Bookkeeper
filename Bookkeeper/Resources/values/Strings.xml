@@ -6,6 +6,7 @@
     <string name="NewEntryRBtnIncomeLabel">Inkomst</string>
     <string name="NewEntryRBtnExpenseLabel">Utgift</string>
     <string name="NewEntryDateLabel">Datum:</string>
+    <string name="NewEntryDateBtnLabel">Välj datum</string>
     <string name="NewEntryDescriptionLabel">Beskrivning:</string>
     <string name="NewEntryTypeLabel">Typ:</string>
     <string name="NewEntryAccountLabel">Till/Från konto:</string>

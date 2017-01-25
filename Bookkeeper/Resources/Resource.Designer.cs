@@ -127,7 +127,7 @@ namespace Bookkeeper
 			public const int newEntryBtn = 2131034112;
 			
 			// aapt resource value: 0x7f050009
-			public const int newEntryDate = 2131034121;
+			public const int newEntryDateBtn = 2131034121;
 			
 			// aapt resource value: 0x7f050008
 			public const int newEntryDateLabel = 2131034120;
@@ -182,17 +182,20 @@ namespace Bookkeeper
 			// aapt resource value: 0x7f040000
 			public const int Hello = 2130968576;
 			
-			// aapt resource value: 0x7f040008
-			public const int NewEntryAccountLabel = 2130968584;
+			// aapt resource value: 0x7f040009
+			public const int NewEntryAccountLabel = 2130968585;
 			
-			// aapt resource value: 0x7f04000b
-			public const int NewEntryAddBtnLabel = 2130968587;
+			// aapt resource value: 0x7f04000c
+			public const int NewEntryAddBtnLabel = 2130968588;
+			
+			// aapt resource value: 0x7f040006
+			public const int NewEntryDateBtnLabel = 2130968582;
 			
 			// aapt resource value: 0x7f040005
 			public const int NewEntryDateLabel = 2130968581;
 			
-			// aapt resource value: 0x7f040006
-			public const int NewEntryDescriptionLabel = 2130968582;
+			// aapt resource value: 0x7f040007
+			public const int NewEntryDescriptionLabel = 2130968583;
 			
 			// aapt resource value: 0x7f040002
 			public const int NewEntryInfo = 2130968578;
@@ -203,14 +206,14 @@ namespace Bookkeeper
 			// aapt resource value: 0x7f040003
 			public const int NewEntryRBtnIncomeLabel = 2130968579;
 			
+			// aapt resource value: 0x7f04000b
+			public const int NewEntryTaxLabel = 2130968587;
+			
 			// aapt resource value: 0x7f04000a
-			public const int NewEntryTaxLabel = 2130968586;
+			public const int NewEntryTotalLabel = 2130968586;
 			
-			// aapt resource value: 0x7f040009
-			public const int NewEntryTotalLabel = 2130968585;
-			
-			// aapt resource value: 0x7f040007
-			public const int NewEntryTypeLabel = 2130968583;
+			// aapt resource value: 0x7f040008
+			public const int NewEntryTypeLabel = 2130968584;
 			
 			static String()
 			{

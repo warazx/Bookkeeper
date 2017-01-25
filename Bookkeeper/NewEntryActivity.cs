@@ -21,7 +21,7 @@ namespace Bookkeeper
         RadioGroup rBtnGroup;
         RadioButton incomeRBtn;
         RadioButton expenseRBtn;
-        EditText dateText;
+        Button dateBtn;
         EditText descriptionText;
         Spinner typeSpin;
         Spinner accountSpin;
@@ -41,12 +41,23 @@ namespace Bookkeeper
             entry = new Entry();
             rBtnGroup.CheckedChange += RBtnGroup_CheckedChange;
             addBtn.Click += AddBtn_Click;
+            dateBtn.Click += DateBtn_Click;
+        }
+
+        private void DateBtn_Click(object sender, EventArgs e)
+        {
+            DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
+            {
+                dateBtn.Text = time.ToLongDateString();
+                entry.Date = time;
+            });
+            frag.Show(FragmentManager, DatePickerFragment.TAG);
         }
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
             bool isIncome = incomeRBtn.Checked;
-            string date = dateText.Text;
+            DateTime date = entry.Date;
             string description = descriptionText.Text;
             int typeID = (isIncome ?
                 bm.IncomeAccounts[typeSpin.SelectedItemPosition].Number :
@@ -82,7 +93,7 @@ namespace Bookkeeper
             rBtnGroup = FindViewById<RadioGroup>(Resource.Id.RBtnGroup);
             incomeRBtn = FindViewById<RadioButton>(Resource.Id.newEntryRBtnIncome);
             expenseRBtn = FindViewById<RadioButton>(Resource.Id.newEntryRBtnExpense);
-            dateText = FindViewById<EditText>(Resource.Id.newEntryDate);
+            dateBtn = FindViewById<Button>(Resource.Id.newEntryDateBtn);
             descriptionText = FindViewById<EditText>(Resource.Id.NewEntryDescription);
             typeSpin = FindViewById<Spinner>(Resource.Id.NewEntrySpinType);
             accountSpin = FindViewById<Spinner>(Resource.Id.NewEntrySpinAccount);
