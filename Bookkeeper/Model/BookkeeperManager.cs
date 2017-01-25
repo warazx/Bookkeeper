@@ -45,7 +45,7 @@ namespace Bookkeeper.Model
 
             MoneyAccounts = new List<Account> { new Account("Assets", 211),
                                                 new Account("Founds", 224),
-                                                new Account("Project", 245)};
+                                                new Account("Project", 245)};            TaxRates = new List<TaxRate> { new TaxRate(0.06), new TaxRate(0.12), new TaxRate(0.20), new TaxRate(0.25) };
         }
     }
 }

@@ -75,11 +75,11 @@ namespace Bookkeeper
 			// aapt resource value: 0x7f050012
 			public const int NewEntrySpinAccount = 2131034130;
 			
+			// aapt resource value: 0x7f050018
+			public const int NewEntrySpinTax = 2131034136;
+			
 			// aapt resource value: 0x7f05000f
 			public const int NewEntrySpinType = 2131034127;
-			
-			// aapt resource value: 0x7f050018
-			public const int NewEntryTax = 2131034136;
 			
 			// aapt resource value: 0x7f050017
 			public const int NewEntryTaxLabel = 2131034135;
@@ -92,6 +92,9 @@ namespace Bookkeeper
 			
 			// aapt resource value: 0x7f05000e
 			public const int NewEntryTypeLabel = 2131034126;
+			
+			// aapt resource value: 0x7f050004
+			public const int RBtnGroup = 2131034116;
 			
 			// aapt resource value: 0x7f05001a
 			public const int SpinnerItemText = 2131034138;
@@ -134,9 +137,6 @@ namespace Bookkeeper
 			
 			// aapt resource value: 0x7f050005
 			public const int newEntryRBtnIncome = 2131034117;
-			
-			// aapt resource value: 0x7f050004
-			public const int radioGroup = 2131034116;
 			
 			// aapt resource value: 0x7f050001
 			public const int showAllEntriesBtn = 2131034113;

@@ -20,5 +20,10 @@ namespace Bookkeeper.Model
         {
             Rate = rate;
         }
+
+        public override string ToString()
+        {
+            return "" + Rate * 100 + "%";
+        }
     }
 }

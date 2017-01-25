@@ -17,6 +17,7 @@ namespace Bookkeeper
     public class NewEntryActivity : Activity
     {
         BookkeeperManager bm;
+        RadioGroup rBtnGroup;
         RadioButton incomeRBtn;
         RadioButton expenseRBtn;
         EditText dateText;
@@ -24,7 +25,7 @@ namespace Bookkeeper
         Spinner typeSpin;
         Spinner accountSpin;
         EditText totalText;
-        EditText taxText;
+        Spinner taxSpin;
         Button addBtn;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -33,18 +34,33 @@ namespace Bookkeeper
             SetContentView(Resource.Layout.NewEntry);
             bindLayout();
 
-            typeSpin.Adapter = GetArrayAdapter(bm.ExpenseAccounts);
-            accountSpin.Adapter = GetArrayAdapter(bm.MoneyAccounts); 
+            typeSpin.Adapter = GetArrayAdapter(bm.IncomeAccounts);
+            accountSpin.Adapter = GetArrayAdapter(bm.MoneyAccounts);
+            taxSpin.Adapter = GetArrayAdapter(bm.TaxRates);
+            rBtnGroup.CheckedChange += RBtnGroup_CheckedChange;
         }
 
-        private ArrayAdapter<Account> GetArrayAdapter(List<Account> accounts)
+        private void RBtnGroup_CheckedChange(object sender, RadioGroup.CheckedChangeEventArgs e)
         {
-            return new ArrayAdapter<Account>(this, Resource.Layout.SpinnerItem, Resource.Id.SpinnerItemText, accounts);
+            if(incomeRBtn.Checked)
+            {
+                typeSpin.Adapter = GetArrayAdapter(bm.IncomeAccounts);
+            }
+            if (expenseRBtn.Checked)
+            {
+                typeSpin.Adapter = GetArrayAdapter(bm.ExpenseAccounts);
+            }
+        }
+
+        private ArrayAdapter<T> GetArrayAdapter<T>(List<T> items)
+        {
+            return new ArrayAdapter<T>(this, Resource.Layout.SpinnerItem, Resource.Id.SpinnerItemText, items);
         }
 
         private void bindLayout()
         {
             bm = new BookkeeperManager();
+            rBtnGroup = FindViewById<RadioGroup>(Resource.Id.RBtnGroup);
             incomeRBtn = FindViewById<RadioButton>(Resource.Id.newEntryRBtnIncome);
             expenseRBtn = FindViewById<RadioButton>(Resource.Id.newEntryRBtnExpense);
             dateText = FindViewById<EditText>(Resource.Id.newEntryDate);
@@ -52,7 +68,7 @@ namespace Bookkeeper
             typeSpin = FindViewById<Spinner>(Resource.Id.NewEntrySpinType);
             accountSpin = FindViewById<Spinner>(Resource.Id.NewEntrySpinAccount);
             totalText = FindViewById<EditText>(Resource.Id.NewEntryTotal);
-            taxText = FindViewById<EditText>(Resource.Id.NewEntryTax);
+            taxSpin = FindViewById<Spinner>(Resource.Id.NewEntrySpinTax);
             addBtn = FindViewById<Button>(Resource.Id.newEntryAddEntryBtn);
         }
     }
