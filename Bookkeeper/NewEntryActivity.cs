@@ -16,6 +16,7 @@ namespace Bookkeeper
     [Activity(Label = "New Entry")]
     public class NewEntryActivity : Activity
     {
+        Entry entry;
         BookkeeperManager bm;
         RadioGroup rBtnGroup;
         RadioButton incomeRBtn;
@@ -37,7 +38,25 @@ namespace Bookkeeper
             typeSpin.Adapter = GetArrayAdapter(bm.IncomeAccounts);
             accountSpin.Adapter = GetArrayAdapter(bm.MoneyAccounts);
             taxSpin.Adapter = GetArrayAdapter(bm.TaxRates);
+            entry = new Entry();
             rBtnGroup.CheckedChange += RBtnGroup_CheckedChange;
+            addBtn.Click += AddBtn_Click;
+        }
+
+        private void AddBtn_Click(object sender, EventArgs e)
+        {
+            bool isIncome = incomeRBtn.Checked;
+            string date = dateText.Text;
+            string description = descriptionText.Text;
+            int typeID = (isIncome ?
+                bm.IncomeAccounts[typeSpin.SelectedItemPosition].Number :
+                bm.ExpenseAccounts[typeSpin.SelectedItemPosition].Number);            
+            int accountID = bm.MoneyAccounts[accountSpin.SelectedItemPosition].Number;
+            int total = Int32.Parse(totalText.Text);
+            double taxRate = bm.TaxRates[taxSpin.SelectedItemPosition].Rate;
+
+            Entry newEntry = new Entry(isIncome, date, description, typeID, accountID, total, taxRate);
+            bm.addEntry(newEntry);
         }
 
         private void RBtnGroup_CheckedChange(object sender, RadioGroup.CheckedChangeEventArgs e)
