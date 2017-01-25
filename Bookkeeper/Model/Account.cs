@@ -22,5 +22,10 @@ namespace Bookkeeper.Model
             Name = name;
             Number = number;
         }
+
+        public override string ToString()
+        {
+            return Name + " (" + Number + ")";
+        }
     }
 }

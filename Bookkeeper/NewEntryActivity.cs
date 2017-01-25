@@ -32,6 +32,14 @@ namespace Bookkeeper
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.NewEntry);
             bindLayout();
+
+            typeSpin.Adapter = GetArrayAdapter(bm.ExpenseAccounts);
+            accountSpin.Adapter = GetArrayAdapter(bm.MoneyAccounts); 
+        }
+
+        private ArrayAdapter<Account> GetArrayAdapter(List<Account> accounts)
+        {
+            return new ArrayAdapter<Account>(this, Resource.Layout.SpinnerItem, Resource.Id.SpinnerItemText, accounts);
         }
 
         private void bindLayout()

@@ -93,6 +93,9 @@ namespace Bookkeeper
 			// aapt resource value: 0x7f05000e
 			public const int NewEntryTypeLabel = 2131034126;
 			
+			// aapt resource value: 0x7f05001a
+			public const int SpinnerItemText = 2131034138;
+			
 			// aapt resource value: 0x7f050002
 			public const int createReportsBtn = 2131034114;
 			
@@ -156,6 +159,9 @@ namespace Bookkeeper
 			
 			// aapt resource value: 0x7f030001
 			public const int NewEntry = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int SpinnerItem = 2130903042;
 			
 			static Layout()
 			{
