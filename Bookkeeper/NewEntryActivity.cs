@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace Bookkeeper
 {
-    [Activity(Label = "NewEntryActivity")]
+    [Activity(Label = "New Entry")]
     public class NewEntryActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)

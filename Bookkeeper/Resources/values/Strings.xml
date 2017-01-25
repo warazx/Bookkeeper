@@ -2,4 +2,14 @@
 <resources>
     <string name="Hello">Hello World, Click Me!</string>
     <string name="ApplicationName">Bookkeeper</string>
+    <string name="NewEntryInfo">Här kan du lägga till nya händelser, antingen inkomster eller utgifter</string>
+    <string name="NewEntryRBtnIncomeLabel">Inkomst</string>
+    <string name="NewEntryRBtnExpenseLabel">Utgift</string>
+    <string name="NewEntryDateLabel">Datum:</string>
+    <string name="NewEntryDescriptionLabel">Beskrivning:</string>
+    <string name="NewEntryTypeLabel">Typ:</string>
+    <string name="NewEntryAccountLabel">Till/Från konto:</string>
+    <string name="NewEntryTotalLabel">Totalt Belopp (inkl. moms):</string>
+    <string name="NewEntryTaxLabel">Moms:</string>
+    <string name="NewEntryAddBtnLabel">Lägg till händelse</string>
 </resources>
