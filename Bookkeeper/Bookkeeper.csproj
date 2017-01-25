@@ -52,6 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Model\Account.cs" />
+    <Compile Include="Model\BookkeeperManager.cs" />
+    <Compile Include="Model\Entry.cs" />
+    <Compile Include="Model\TaxRate.cs" />
     <Compile Include="NewEntryActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
