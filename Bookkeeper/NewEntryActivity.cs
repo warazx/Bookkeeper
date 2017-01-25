@@ -9,16 +9,20 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Bookkeeper.Model;
 
 namespace Bookkeeper
 {
     [Activity(Label = "New Entry")]
     public class NewEntryActivity : Activity
     {
+        BookkeeperManager bm;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.NewEntry);
+            bm = new BookkeeperManager();
         }
     }
 }

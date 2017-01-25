@@ -19,6 +19,20 @@ namespace Bookkeeper.Model
         public List<Account> IncomeAccounts { get; set; }
         public List<Account> MoneyAccounts { get; set; }        public List<TaxRate> TaxRates { get; set; }
 
+        private static BookkeeperManager instance;
+
+        public static BookkeeperManager Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new BookkeeperManager();
+                }
+                return instance;
+            }
+        }
+
         public BookkeeperManager()
         {
             ExpenseAccounts = new List<Account> { new Account("Computer", 585),
