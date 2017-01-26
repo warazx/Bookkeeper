@@ -1,26 +1,25 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-
 namespace Bookkeeper.Model
 {
-    class Account
+    public class Account
     {
+        public enum Type
+        {
+            Income,
+            Expense,
+            Money
+        };
+
         public string Name { get; set; }
         public int Number { get; set; }
+        public Type AccountType { get; set; }
 
-        public Account(string name, int number)
+        public Account() { }
+
+        public Account(string name, int number, Type type)
         {
             Name = name;
             Number = number;
+            AccountType = type;
         }
 
         public override string ToString()

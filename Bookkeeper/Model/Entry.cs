@@ -1,26 +1,19 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+using SQLite;
 
 namespace Bookkeeper.Model
 {
-    class Entry
+    public class Entry
     {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
         public bool IsIncome { get; set; }
         public DateTime Date { get; set; }
         public string Description { get; set; }
         public int TypeID { get; set; }
         public int AccountID { get; set; }
         public int Total { get; set; }
-        public double TaxRate { get; set; }
+        public int TaxRateID { get; set; }
 
         public Entry()
         {
@@ -30,10 +23,10 @@ namespace Bookkeeper.Model
             TypeID = 0;
             AccountID = 0;
             Total = 0;
-            TaxRate = 0;
+            TaxRateID = 0;
         }
 
-        public Entry(bool isIncome, DateTime date, string description, int typeID, int accountID, int total, double taxRate)
+        public Entry(bool isIncome, DateTime date, string description, int typeID, int accountID, int total, int taxRateID)
         {
             IsIncome = isIncome;
             Date = date;
@@ -41,7 +34,7 @@ namespace Bookkeeper.Model
             TypeID = typeID;
             AccountID = accountID;
             Total = total;
-            TaxRate = taxRate;
+            TaxRateID = taxRateID;
         }
     }
 }

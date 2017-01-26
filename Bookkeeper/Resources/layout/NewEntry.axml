@@ -28,7 +28,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayoutDate">
+        android:id="@+id/linearLayoutDate"
+        android:padding="5dp">
         <TextView
             android:text="@string/NewEntryDateLabel"
             android:id="@+id/newEntryDateLabel"
@@ -44,7 +45,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayoutDescription">
+        android:id="@+id/linearLayoutDescription"
+        android:padding="5dp">
         <TextView
             android:text="@string/NewEntryDescriptionLabel"
             android:id="@+id/NewEntryDescriptionLabel"
@@ -59,7 +61,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayoutType">
+        android:id="@+id/linearLayoutType"
+        android:padding="5dp">
         <TextView
             android:text="@string/NewEntryTypeLabel"
             android:id="@+id/NewEntryTypeLabel"
@@ -74,7 +77,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayoutAccount">
+        android:id="@+id/linearLayoutAccount"
+        android:padding="5dp">
         <TextView
             android:text="@string/NewEntryAccountLabel"
             android:id="@+id/NewEntryAccountLabel"
@@ -83,13 +87,15 @@
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/NewEntrySpinAccount" />
+            android:id="@+id/NewEntrySpinAccount"
+            android:layout_marginLeft="0.0dp" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayoutTotal">
+        android:id="@+id/linearLayoutTotal"
+        android:padding="5dp">
         <TextView
             android:text="@string/NewEntryTotalLabel"
             android:id="@+id/NewEntryTotalLabel"
@@ -98,13 +104,15 @@
         <EditText
             android:id="@+id/NewEntryTotal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:inputType="number" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayoutTotalExMoms">
+        android:id="@+id/linearLayoutTotalExMoms"
+        android:padding="5dp">
         <TextView
             android:text="@string/NewEntryTotalExMomsLabel"
             android:id="@+id/NewEntryTotalExMomsLabel"
@@ -120,7 +128,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayoutTax">
+        android:id="@+id/linearLayoutTax"
+        android:padding="5dp">
         <TextView
             android:text="@string/NewEntryTaxLabel"
             android:id="@+id/NewEntryTaxLabel"
