@@ -109,5 +109,17 @@ namespace Bookkeeper.Model
             }
             return taxRate;
         }
+
+        public List<Entry> GetEntries()
+        {
+            List<Entry> returnList = new List<Entry>();
+            using (var db = new SQLiteConnection(fullPath))
+            {
+                var list = db.Table<Entry>();
+                returnList = ConvertToList(list);
+                db.Close();
+            }
+            return returnList;
+        }
     }
 }

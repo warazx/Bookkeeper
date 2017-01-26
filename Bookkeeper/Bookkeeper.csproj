@@ -82,10 +82,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatePickerFragment.cs" />
+    <Compile Include="Model\EntryAdapter.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\BookkeeperManager.cs" />
     <Compile Include="Model\Entry.cs" />
+    <Compile Include="Model\JavaObjectWrapper.cs" />
     <Compile Include="Model\TaxRate.cs" />
     <Compile Include="NewEntryActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -103,6 +105,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\ShowAllEntries.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\EntryItem.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

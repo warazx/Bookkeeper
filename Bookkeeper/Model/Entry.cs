@@ -6,7 +6,7 @@ namespace Bookkeeper.Model
     public class Entry
     {
         [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public bool IsIncome { get; set; }
         public DateTime Date { get; set; }
         public string Description { get; set; }
@@ -35,6 +35,11 @@ namespace Bookkeeper.Model
             AccountID = accountID;
             Total = total;
             TaxRateID = taxRateID;
+        }
+
+        public override string ToString()
+        {
+            return "" + Id + ": " + Total + "kr till: " + AccountID;
         }
     }
 }
