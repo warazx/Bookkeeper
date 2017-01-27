@@ -36,8 +36,8 @@ namespace Bookkeeper
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.NewEntry);
-            bindLayout();
-            entry = new Entry();
+            bindLayout();            
+            initEntry();
 
             typeSpin.Adapter = GetArrayAdapter(bm.GetAccounts(AccountType.Income));
             accountSpin.Adapter = GetArrayAdapter(bm.GetAccounts(AccountType.Money));
@@ -45,6 +45,20 @@ namespace Bookkeeper
 
             initValues();
             initDelegates();
+        }
+
+        private void initEntry()
+        {
+            int entryId = Intent.GetIntExtra("entryId", 0);
+            if (entryId > 0)
+            {
+                entry = bm.GetEntry(entryId);
+                addBtn.Text = "Uppdatera händelse " + entry.Id;
+            }
+            else
+            {
+                entry = new Entry();
+            }
         }
 
         private void initDelegates()
@@ -89,8 +103,17 @@ namespace Bookkeeper
             int position = 0;
             if(entry.TypeID != 0)
             {
-                var list = bm.GetAccounts(AccountType.Income);
-                Account currentAccount = list.Where(a => a.Number.Equals(entry.TypeID)).First();
+                List<Account> list;
+                if (entry.IsIncome)
+                {
+                    list = bm.GetAccounts(AccountType.Income);
+                }
+                else
+                {
+                    list = bm.GetAccounts(AccountType.Expense);
+                }                             
+                
+                var currentAccount = list.Where(a => a.Number.Equals(entry.TypeID)).FirstOrDefault();
                 position = list.IndexOf(currentAccount);
             }            
             typeSpin.SetSelection(position);
@@ -99,7 +122,7 @@ namespace Bookkeeper
             if(entry.AccountID != 0)
             {
                 var list = bm.GetAccounts(AccountType.Money);
-                Account currentAccount = list.Where(a => a.Number.Equals(entry.AccountID)).First();
+                Account currentAccount = list.Where(a => a.Number.Equals(entry.AccountID)).FirstOrDefault();
                 position = list.IndexOf(currentAccount);
             }
             accountSpin.SetSelection(position);
@@ -108,7 +131,7 @@ namespace Bookkeeper
             if (entry.TaxRateID != 0)
             {
                 var list = bm.GetTaxRates();
-                TaxRate currentTaxRate = list.Where(tr => tr.Id.Equals(entry.TaxRateID)).First();
+                TaxRate currentTaxRate = list.Where(tr => tr.Id.Equals(entry.TaxRateID)).FirstOrDefault();
                 position = list.IndexOf(currentTaxRate);
             }
             taxSpin.SetSelection(position);
@@ -157,7 +180,14 @@ namespace Bookkeeper
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
-            bm.addEntry(entry);
+            if(entry.Id != null)
+            {
+                bm.UpdateEntry(entry);
+            }
+            else
+            {
+                bm.addEntry(entry);
+            }            
         }
 
         private void RBtnGroup_CheckedChange(object sender, RadioGroup.CheckedChangeEventArgs e)

@@ -54,10 +54,15 @@ namespace Bookkeeper.Utils
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            View view = convertView; // re-use an existing view, if one is available
-            if (view == null) // otherwise create a new one
-                view = context.LayoutInflater.Inflate(Resource.Layout.EntryItem, null);
+            View view = convertView;
+            if (view == null) view = context.LayoutInflater.Inflate(Resource.Layout.EntryItem, null);
             view.FindViewById<TextView>(Resource.Id.textView).Text = entries.ElementAt(position).ToString();
+            view.Click += delegate
+            {
+                Intent intent = new Intent(context, typeof(NewEntryActivity));
+                intent.PutExtra("entryId", (int)entries.ElementAt(position).Id);
+                context.StartActivity(intent);
+            };
             return view;
         }
     }

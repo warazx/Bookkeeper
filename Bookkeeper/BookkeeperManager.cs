@@ -134,5 +134,23 @@ namespace Bookkeeper
             }
             return account;
         }
+
+        public Entry GetEntry(int id)
+        {
+            Entry entry;
+            using (var db = new SQLiteConnection(fullPath))
+            {
+                entry = db.Table<Entry>().Where(e => e.Id.Equals(id)).First();
+            }
+            return entry;
+        }
+
+        public void UpdateEntry(Entry entry)
+        {
+            using (var db = new SQLiteConnection(fullPath))
+            {
+                db.Update(entry);
+            }
+        }
     }
 }
