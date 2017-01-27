@@ -44,12 +44,38 @@ namespace Bookkeeper
             taxSpin.Adapter = GetArrayAdapter(bm.GetTaxRates());
 
             initValues();
+            initDelegates();
+        }
 
+        private void initDelegates()
+        {
             rBtnGroup.CheckedChange += RBtnGroup_CheckedChange;
-            addBtn.Click += AddBtn_Click;
             dateBtn.Click += DateBtn_Click;
+            descriptionText.TextChanged += DescriptionText_TextChanged;
+            typeSpin.ItemSelected += TypeSpin_ItemSelected;
+            accountSpin.ItemSelected += AccountSpin_ItemSelected;                      
             totalText.TextChanged += TotalText_TextChanged;
             taxSpin.ItemSelected += TaxSpin_ItemSelected;
+            addBtn.Click += AddBtn_Click;
+        }
+
+        private void AccountSpin_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            Spinner spinner = (Spinner)sender;
+            string id = spinner.GetItemAtPosition(e.Position).ToString();
+            entry.AccountID = int.Parse(id);
+        }
+
+        private void TypeSpin_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            Spinner spinner = (Spinner)sender;
+            string id = spinner.GetItemAtPosition(e.Position).ToString();
+            entry.TypeID = int.Parse(id);
+        }
+
+        private void DescriptionText_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        {
+            entry.Description = descriptionText.Text;
         }
 
         private void initValues()
@@ -58,16 +84,50 @@ namespace Bookkeeper
             expenseRBtn.Checked = !entry.IsIncome;
             dateBtn.Text = entry.Date.ToShortDateString();
             descriptionText.Text = entry.Description;
-            //typeSpin.SetSelection(taxSpin.Adapter
+            totalText.Text = "" + entry.Total;
+
+            int position = 0;
+            if(entry.TypeID != 0)
+            {
+                var list = bm.GetAccounts(AccountType.Income);
+                Account currentAccount = list.Where(a => a.Number.Equals(entry.TypeID)).First();
+                position = list.IndexOf(currentAccount);
+            }            
+            typeSpin.SetSelection(position);
+
+            position = 0;
+            if(entry.AccountID != 0)
+            {
+                var list = bm.GetAccounts(AccountType.Money);
+                Account currentAccount = list.Where(a => a.Number.Equals(entry.AccountID)).First();
+                position = list.IndexOf(currentAccount);
+            }
+            accountSpin.SetSelection(position);
+
+            position = 0;
+            if (entry.TaxRateID != 0)
+            {
+                var list = bm.GetTaxRates();
+                TaxRate currentTaxRate = list.Where(tr => tr.Id.Equals(entry.TaxRateID)).First();
+                position = list.IndexOf(currentTaxRate);
+            }
+            taxSpin.SetSelection(position);
         }
 
         private void TaxSpin_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
+            Spinner spinner = (Spinner)sender;
+            string id = spinner.GetItemAtPosition(e.Position).ToString();
+            entry.TaxRateID = int.Parse(id);
             ChangeTotalExMomsText();
         }
 
         private void TotalText_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
         {
+            if(totalText.Text.Length > 0)
+            {
+                entry.Total = int.Parse(totalText.Text);
+            }
             ChangeTotalExMomsText();
         }
 
@@ -75,9 +135,8 @@ namespace Bookkeeper
         {
             try
             {
-                int index = taxSpin.SelectedItemPosition;
-                double tax = bm.GetTaxRate(index+1).Rate;
-                double exMomsTotal = int.Parse(totalText.Text) / (1 + tax);
+                double tax = bm.GetTaxRate(entry.TaxRateID).Rate;
+                double exMomsTotal = entry.Total / (1 + tax);
                 totalExMoms.Text = "" + Math.Round(exMomsTotal, 2);
             }
             catch (Exception)
@@ -90,7 +149,7 @@ namespace Bookkeeper
         {
             DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
             {
-                dateBtn.Text = time.ToLongDateString();
+                dateBtn.Text = time.ToShortDateString();
                 entry.Date = time;
             });
             frag.Show(FragmentManager, DatePickerFragment.TAG);
@@ -98,18 +157,7 @@ namespace Bookkeeper
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
-            bool isIncome = incomeRBtn.Checked;
-            DateTime date = entry.Date;
-            string description = descriptionText.Text;
-            int typeID = (isIncome ?
-                bm.GetAccounts(AccountType.Income)[typeSpin.SelectedItemPosition].Number :
-                bm.GetAccounts(AccountType.Expense)[typeSpin.SelectedItemPosition].Number);            
-            int accountID = bm.GetAccounts(AccountType.Money)[accountSpin.SelectedItemPosition].Number;
-            int total = int.Parse(totalText.Text);
-            int taxRate = bm.GetTaxRate(taxSpin.SelectedItemPosition).Id;
-
-            Entry newEntry = new Entry(isIncome, date, description, typeID, accountID, total, taxRate);
-            bm.addEntry(newEntry);
+            bm.addEntry(entry);
         }
 
         private void RBtnGroup_CheckedChange(object sender, RadioGroup.CheckedChangeEventArgs e)
@@ -117,10 +165,12 @@ namespace Bookkeeper
             if(incomeRBtn.Checked)
             {
                 typeSpin.Adapter = GetArrayAdapter(bm.GetAccounts(AccountType.Income));
+                entry.IsIncome = true;
             }
             if (expenseRBtn.Checked)
             {
                 typeSpin.Adapter = GetArrayAdapter(bm.GetAccounts(AccountType.Expense));
+                entry.IsIncome = false;
             }
         }
 

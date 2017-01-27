@@ -17,7 +17,7 @@ namespace Bookkeeper.Models
 
         public override string ToString()
         {
-            return "" + Rate * 100 + "%";
+            return "" + Id;
         }
     }
 }

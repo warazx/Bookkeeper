@@ -123,5 +123,16 @@ namespace Bookkeeper
             }
             return returnList;
         }
+
+        public Account GetAccount(int id)
+        {
+            Account account;
+            using (var db = new SQLiteConnection(fullPath))
+            {
+                account = db.Table<Account>().Where(a => a.Number.Equals(id)).First();
+                db.Close();
+            }
+            return account;
+        }
     }
 }
