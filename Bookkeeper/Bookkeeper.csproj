@@ -81,18 +81,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\DatePickerFragment.cs" />
+    <Compile Include="Controllers\DatePickerFragment.cs" />
     <Compile Include="Utils\EntryAdapter.cs" />
-    <Compile Include="Views\MainActivity.cs" />
+    <Compile Include="Controllers\MainActivity.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="BookkeeperManager.cs" />
     <Compile Include="Models\Entry.cs" />
     <Compile Include="Utils\JavaObjectWrapper.cs" />
     <Compile Include="Models\TaxRate.cs" />
-    <Compile Include="Views\NewEntryActivity.cs" />
+    <Compile Include="Controllers\NewEntryActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\ShowAllEntriesActivity.cs" />
+    <Compile Include="Controllers\ShowAllEntriesActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
