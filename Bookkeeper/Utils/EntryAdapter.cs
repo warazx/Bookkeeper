@@ -9,8 +9,9 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Bookkeeper.Models;
 
-namespace Bookkeeper.Model
+namespace Bookkeeper.Utils
 {
     public class EntryAdapter : BaseAdapter<Entry>
     {

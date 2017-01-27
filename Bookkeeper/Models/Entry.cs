@@ -1,7 +1,7 @@
 using System;
 using SQLite;
 
-namespace Bookkeeper.Model
+namespace Bookkeeper.Models
 {
     public class Entry
     {

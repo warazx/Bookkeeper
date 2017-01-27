@@ -1,6 +1,6 @@
 using System;
 
-namespace Bookkeeper.Model
+namespace Bookkeeper.Utils
 {
     public class JavaObjectWrapper : Java.Lang.Object
     {

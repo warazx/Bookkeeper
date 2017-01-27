@@ -9,8 +9,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Bookkeeper.Model;
 using SQLite;
+using Bookkeeper.Models;
 
 namespace Bookkeeper
 {

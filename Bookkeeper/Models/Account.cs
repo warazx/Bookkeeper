@@ -1,4 +1,4 @@
-namespace Bookkeeper.Model
+namespace Bookkeeper.Models
 {
     public class Account
     {
