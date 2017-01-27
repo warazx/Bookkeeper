@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using SQLite;
 using Bookkeeper.Models;
+using Bookkeeper.Utils;
 
 namespace Bookkeeper
 {
@@ -34,17 +35,17 @@ namespace Bookkeeper
 
                 if(db.Table<Account>().Count() == 0)
                 {
-                    db.Insert(new Account("Computer", 585, Account.Type.Expense));
-                    db.Insert(new Account("Supplies", 631, Account.Type.Expense));
-                    db.Insert(new Account("Labour & Welfare", 597, Account.Type.Expense));
+                    db.Insert(new Account("Computer", 585, AccountType.Expense));
+                    db.Insert(new Account("Supplies", 631, AccountType.Expense));
+                    db.Insert(new Account("Labour & Welfare", 597, AccountType.Expense));
 
-                    db.Insert(new Account("Rental", 400, Account.Type.Income));
-                    db.Insert(new Account("Interest", 420, Account.Type.Income));
-                    db.Insert(new Account("Sales", 440, Account.Type.Income));
+                    db.Insert(new Account("Rental", 400, AccountType.Income));
+                    db.Insert(new Account("Interest", 420, AccountType.Income));
+                    db.Insert(new Account("Sales", 440, AccountType.Income));
 
-                    db.Insert(new Account("Assets", 211, Account.Type.Money));
-                    db.Insert(new Account("Founds", 224, Account.Type.Money));
-                    db.Insert(new Account("Project", 245, Account.Type.Money));
+                    db.Insert(new Account("Assets", 211, AccountType.Money));
+                    db.Insert(new Account("Founds", 224, AccountType.Money));
+                    db.Insert(new Account("Project", 245, AccountType.Money));
                 }
                 if(db.Table<TaxRate>().Count() == 0)
                 {
@@ -66,7 +67,7 @@ namespace Bookkeeper
             }            
         }
 
-        public List<Account> GetAccounts(Account.Type type)
+        public List<Account> GetAccounts(AccountType type)
         {
             List<Account> returnList = new List<Account>();
             using (var db = new SQLiteConnection(fullPath))

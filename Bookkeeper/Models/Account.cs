@@ -1,21 +1,19 @@
+using Bookkeeper.Utils;
+using SQLite;
+
 namespace Bookkeeper.Models
 {
     public class Account
     {
-        public enum Type
-        {
-            Income,
-            Expense,
-            Money
-        };
-
-        public string Name { get; set; }
+        [PrimaryKey]
         public int Number { get; set; }
-        public Type AccountType { get; set; }
+        public string Name { get; set; }        
+
+        public AccountType AccountType { get; set; }
 
         public Account() { }
 
-        public Account(string name, int number, Type type)
+        public Account(string name, int number, AccountType type)
         {
             Name = name;
             Number = number;

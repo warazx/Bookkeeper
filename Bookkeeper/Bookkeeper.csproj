@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\DatePickerFragment.cs" />
+    <Compile Include="Utils\AccountType.cs" />
     <Compile Include="Utils\EntryAdapter.cs" />
     <Compile Include="Controllers\MainActivity.cs" />
     <Compile Include="Models\Account.cs" />

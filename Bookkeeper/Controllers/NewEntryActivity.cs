@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using SQLite;
 using Bookkeeper.Models;
+using Bookkeeper.Utils;
 
 namespace Bookkeeper
 {
@@ -38,15 +39,26 @@ namespace Bookkeeper
             bindLayout();
             entry = new Entry();
 
-            typeSpin.Adapter = GetArrayAdapter(bm.GetAccounts(Account.Type.Income));
-            accountSpin.Adapter = GetArrayAdapter(bm.GetAccounts(Account.Type.Money));
+            typeSpin.Adapter = GetArrayAdapter(bm.GetAccounts(AccountType.Income));
+            accountSpin.Adapter = GetArrayAdapter(bm.GetAccounts(AccountType.Money));
             taxSpin.Adapter = GetArrayAdapter(bm.GetTaxRates());
+
+            initValues();
 
             rBtnGroup.CheckedChange += RBtnGroup_CheckedChange;
             addBtn.Click += AddBtn_Click;
             dateBtn.Click += DateBtn_Click;
             totalText.TextChanged += TotalText_TextChanged;
             taxSpin.ItemSelected += TaxSpin_ItemSelected;
+        }
+
+        private void initValues()
+        {
+            incomeRBtn.Checked = entry.IsIncome;
+            expenseRBtn.Checked = !entry.IsIncome;
+            dateBtn.Text = entry.Date.ToShortDateString();
+            descriptionText.Text = entry.Description;
+            //typeSpin.SetSelection(taxSpin.Adapter
         }
 
         private void TaxSpin_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
@@ -90,9 +102,9 @@ namespace Bookkeeper
             DateTime date = entry.Date;
             string description = descriptionText.Text;
             int typeID = (isIncome ?
-                bm.GetAccounts(Account.Type.Income)[typeSpin.SelectedItemPosition].Number :
-                bm.GetAccounts(Account.Type.Expense)[typeSpin.SelectedItemPosition].Number);            
-            int accountID = bm.GetAccounts(Account.Type.Money)[accountSpin.SelectedItemPosition].Number;
+                bm.GetAccounts(AccountType.Income)[typeSpin.SelectedItemPosition].Number :
+                bm.GetAccounts(AccountType.Expense)[typeSpin.SelectedItemPosition].Number);            
+            int accountID = bm.GetAccounts(AccountType.Money)[accountSpin.SelectedItemPosition].Number;
             int total = int.Parse(totalText.Text);
             int taxRate = bm.GetTaxRate(taxSpin.SelectedItemPosition).Id;
 
@@ -104,12 +116,11 @@ namespace Bookkeeper
         {
             if(incomeRBtn.Checked)
             {
-                typeSpin.Adapter = GetArrayAdapter(bm.GetAccounts(Account.Type.Income));
-
+                typeSpin.Adapter = GetArrayAdapter(bm.GetAccounts(AccountType.Income));
             }
             if (expenseRBtn.Checked)
             {
-                typeSpin.Adapter = GetArrayAdapter(bm.GetAccounts(Account.Type.Expense));
+                typeSpin.Adapter = GetArrayAdapter(bm.GetAccounts(AccountType.Expense));
             }
         }
 
