@@ -179,7 +179,7 @@ namespace Bookkeeper
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int createreports = 2130903040;
+			public const int CreateReports = 2130903040;
 			
 			// aapt resource value: 0x7f030001
 			public const int EntryItem = 2130903041;

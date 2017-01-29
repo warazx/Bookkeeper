@@ -112,7 +112,7 @@
     <AndroidResource Include="Resources\layout\EntryItem.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\CreateReports..axml">
+    <AndroidResource Include="Resources\layout\CreateReports.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

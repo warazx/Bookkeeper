@@ -23,7 +23,7 @@ namespace Bookkeeper.Controllers
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.createreports);
+            SetContentView(Resource.Layout.CreateReports);
             taxReportBtn = FindViewById<Button>(Resource.Id.taxReportBtn);
             accountReportBtn = FindViewById<Button>(Resource.Id.accountsReportBtn);
             reportTextView = FindViewById<TextView>(Resource.Id.reportTextView);
