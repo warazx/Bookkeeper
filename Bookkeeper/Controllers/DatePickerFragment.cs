@@ -11,7 +11,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 
-namespace Bookkeeper
+namespace Bookkeeper.Controllers
 {
     public class DatePickerFragment : DialogFragment,
                                   DatePickerDialog.IOnDateSetListener

@@ -11,7 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Bookkeeper.Utils;
 
-namespace Bookkeeper
+namespace Bookkeeper.Controllers
 {
     [Activity(Label = "ShowAllEntriesActivity")]
     public class ShowAllEntriesActivity : Activity
@@ -22,9 +22,20 @@ namespace Bookkeeper
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.ShowAllEntries);
+            initLst();
+        }
+
+        private void initLst()
+        {
             entryListView = FindViewById<ListView>(Resource.Id.list);
             var adapter = new EntryAdapter(this);
             entryListView.Adapter = adapter;
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            initLst();
         }
     }
 }

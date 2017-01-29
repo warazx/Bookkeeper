@@ -81,6 +81,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CreateReportsActivity.cs" />
     <Compile Include="Controllers\DatePickerFragment.cs" />
     <Compile Include="Utils\AccountType.cs" />
     <Compile Include="Utils\EntryAdapter.cs" />
@@ -109,6 +110,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\EntryItem.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\CreateReports..axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

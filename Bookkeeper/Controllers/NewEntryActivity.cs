@@ -13,7 +13,7 @@ using SQLite;
 using Bookkeeper.Models;
 using Bookkeeper.Utils;
 
-namespace Bookkeeper
+namespace Bookkeeper.Controllers
 {
     [Activity(Label = "New Entry")]
     public class NewEntryActivity : Activity
@@ -187,7 +187,8 @@ namespace Bookkeeper
             else
             {
                 bm.addEntry(entry);
-            }            
+            }
+            Finish();
         }
 
         private void RBtnGroup_CheckedChange(object sender, RadioGroup.CheckedChangeEventArgs e)

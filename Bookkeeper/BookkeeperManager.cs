@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using SQLite;
 using Bookkeeper.Models;
 using Bookkeeper.Utils;
+using System.Linq;
 
 namespace Bookkeeper
 {
@@ -73,6 +74,18 @@ namespace Bookkeeper
             using (var db = new SQLiteConnection(fullPath))
             {
                 var list = db.Table<Account>().Where(a => a.AccountType.Equals(type));
+                returnList = ConvertToList(list);
+                db.Close();
+            }
+            return returnList;
+        }
+
+        public List<Account> GetAccounts()
+        {
+            List<Account> returnList = new List<Account>();
+            using (var db = new SQLiteConnection(fullPath))
+            {
+                var list = db.Table<Account>();
                 returnList = ConvertToList(list);
                 db.Close();
             }
@@ -151,6 +164,75 @@ namespace Bookkeeper
             {
                 db.Update(entry);
             }
+        }
+
+        public string GetTaxReport()
+        {
+            List<Entry> entries = GetEntries();
+            List<TaxRate> taxrates = GetTaxRates();
+            double totalTax = 0;
+            string toReturn = "";
+            foreach (Entry entry in entries)
+            {
+                double taxRate = taxrates.Where(tr => tr.Id.Equals(entry.TaxRateID)).FirstOrDefault().Rate;
+                double entryTax = (entry.Total - (entry.Total / (1 + taxRate)));
+                if (entry.IsIncome)
+                {
+                    totalTax += entryTax;
+                    toReturn += string.Format("Entry {0}: Moms: {1}\n", entry.Id, Math.Round(entryTax, 2));
+                }
+                else
+                {
+                    totalTax -= entryTax;
+                    toReturn += string.Format("Entry {0}: Moms: -{1}\n", entry.Id, Math.Round(entryTax, 2));
+                }
+            }
+            toReturn += string.Format("Rapport: Slutlig skatt = {0}", Math.Round(totalTax, 2));
+            return toReturn;
+        }
+
+        public string GetAccountReport()
+        {
+            List<Account> accounts = GetAccounts();
+            List<Entry> entries = GetEntries();
+            string fullString = "";
+            string accountString = "";
+            foreach(Account account in accounts)
+            {
+                accountString += string.Format("*** {0} - ({1}) ***\n", account.Name, account.Number);
+                var relatedEntries = entries.Where(e => e.TypeID.Equals(account.Number) || e.AccountID.Equals(account.Number));
+                int accountTotal = 0;
+                foreach(Entry entry in relatedEntries)
+                {
+                    if(account.AccountType == AccountType.Income)
+                    {
+                        accountString += string.Format("Entry {0}: Total: {1}\n", entry.Id, entry.Total);
+                        accountTotal += entry.Total;
+                    }
+                    else if(account.AccountType == AccountType.Expense)
+                    {
+                        accountString += string.Format("Entry {0}: Total: -{1}\n", entry.Id, entry.Total);
+                        accountTotal -= entry.Total;
+                    }
+                    else if(account.AccountType == AccountType.Money)
+                    {
+                        if (entry.IsIncome)
+                        {
+                            accountString += string.Format("Entry {0}: Total: {1}\n", entry.Id, entry.Total);
+                            accountTotal += entry.Total;
+                        }
+                        else
+                        {
+                            accountString += string.Format("Entry {0}: Total: -{1}\n", entry.Id, entry.Total);
+                            accountTotal -= entry.Total;
+                        }
+                    }
+                }
+                accountString += string.Format("*** Total: {0} ***\n\n", accountTotal);
+                fullString += accountString;
+                accountString = "";
+            }
+            return fullString;
         }
     }
 }
