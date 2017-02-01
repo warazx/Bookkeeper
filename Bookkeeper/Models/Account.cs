@@ -22,7 +22,7 @@ namespace Bookkeeper.Models
 
         public override string ToString()
         {
-            return "" + Number;
+            return Name + " (" + Number + ")";
         }
     }
 }

@@ -12,6 +12,7 @@ using Android.Widget;
 using SQLite;
 using Bookkeeper.Models;
 using Bookkeeper.Utils;
+using System.Text.RegularExpressions;
 
 namespace Bookkeeper.Controllers
 {
@@ -76,14 +77,16 @@ namespace Bookkeeper.Controllers
         private void AccountSpin_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
-            string id = spinner.GetItemAtPosition(e.Position).ToString();
+            var item = spinner.GetItemAtPosition(e.Position).ToString();
+            string id = Regex.Replace(item, "[^0-9]", "");
             entry.AccountID = int.Parse(id);
         }
 
         private void TypeSpin_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
-            string id = spinner.GetItemAtPosition(e.Position).ToString();
+            var item = spinner.GetItemAtPosition(e.Position).ToString();
+            string id = Regex.Replace(item, "[^0-9]", "");
             entry.TypeID = int.Parse(id);
         }
 
@@ -140,7 +143,8 @@ namespace Bookkeeper.Controllers
         private void TaxSpin_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
-            string id = spinner.GetItemAtPosition(e.Position).ToString();
+            var item = spinner.GetItemAtPosition(e.Position).ToString();
+            string id = Regex.Replace(item, "[^0-9]", "");
             entry.TaxRateID = int.Parse(id);
             ChangeTotalExMomsText();
         }
