@@ -1,8 +1,9 @@
+using Bookkeeper.Utils;
 using SQLite;
 
 namespace Bookkeeper.Models
 {
-    public class TaxRate
+    public class TaxRate : JavaObjectWrapper
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; private set; }

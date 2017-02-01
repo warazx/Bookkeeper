@@ -40,7 +40,8 @@ namespace Bookkeeper.Controllers
             bindLayout();            
             initEntry();
 
-            typeSpin.Adapter = GetArrayAdapter(bm.GetAccounts(AccountType.Income));
+            typeSpin.Adapter = GetArrayAdapter(bm.GetAccounts(
+                entry.IsIncome ? AccountType.Income : AccountType.Expense));
             accountSpin.Adapter = GetArrayAdapter(bm.GetAccounts(AccountType.Money));
             taxSpin.Adapter = GetArrayAdapter(bm.GetTaxRates());
 
@@ -77,17 +78,17 @@ namespace Bookkeeper.Controllers
         private void AccountSpin_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
-            var item = spinner.GetItemAtPosition(e.Position).ToString();
-            string id = Regex.Replace(item, "[^0-9]", "");
-            entry.AccountID = int.Parse(id);
+            var account = (Account)spinner.SelectedItem;
+            int id = account.Number;
+            entry.AccountID = id;
         }
 
         private void TypeSpin_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
-            var item = spinner.GetItemAtPosition(e.Position).ToString();
-            string id = Regex.Replace(item, "[^0-9]", "");
-            entry.TypeID = int.Parse(id);
+            var account = (Account)spinner.SelectedItem;
+            int id = account.Number;
+            entry.TypeID = id;
         }
 
         private void DescriptionText_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
@@ -143,9 +144,9 @@ namespace Bookkeeper.Controllers
         private void TaxSpin_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
-            var item = spinner.GetItemAtPosition(e.Position).ToString();
-            string id = Regex.Replace(item, "[^0-9]", "");
-            entry.TaxRateID = int.Parse(id);
+            var taxrate = (TaxRate)spinner.SelectedItem;
+            int id = taxrate.Id;
+            entry.TaxRateID = id;
             ChangeTotalExMomsText();
         }
 

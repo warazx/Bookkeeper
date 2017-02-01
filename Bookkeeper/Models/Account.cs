@@ -3,7 +3,7 @@ using SQLite;
 
 namespace Bookkeeper.Models
 {
-    public class Account
+    public class Account : JavaObjectWrapper
     {
         [PrimaryKey]
         public int Number { get; set; }
