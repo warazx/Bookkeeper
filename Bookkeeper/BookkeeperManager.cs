@@ -55,7 +55,6 @@ namespace Bookkeeper
                     db.Insert(new TaxRate(0.20));
                     db.Insert(new TaxRate(0.25));
                 }
-                db.Close();
             }
         }
 
@@ -64,75 +63,55 @@ namespace Bookkeeper
             using (var db = new SQLiteConnection(fullPath))
             {
                 db.Insert(e);
-                db.Close();
             }            
         }
 
         public List<Account> GetAccounts(AccountType type)
         {
-            List<Account> returnList = new List<Account>();
+            List<Account> returnList;
             using (var db = new SQLiteConnection(fullPath))
             {
-                var list = db.Table<Account>().Where(a => a.AccountType.Equals(type));
-                returnList = ConvertToList(list);
-                db.Close();
+                returnList = db.Table<Account>().Where(a => a.AccountType.Equals(type)).ToList();
             }
             return returnList;
         }
 
         public List<Account> GetAccounts()
         {
-            List<Account> returnList = new List<Account>();
+            List<Account> returnList;
             using (var db = new SQLiteConnection(fullPath))
             {
-                var list = db.Table<Account>();
-                returnList = ConvertToList(list);
-                db.Close();
+                returnList = db.Table<Account>().ToList();
             }
             return returnList;
         }
 
         public List<TaxRate> GetTaxRates()
         {
-            List<TaxRate> returnList = new List<TaxRate>();
+            List<TaxRate> returnList;
             using (var db = new SQLiteConnection(fullPath))
             {
-                var list = db.Table<TaxRate>();
-                returnList = ConvertToList(list);
-                db.Close();
-            }
-            return returnList;
-        }
-
-        private List<T> ConvertToList<T>(IEnumerable<T> list)
-        {
-            List<T> returnList = new List<T>();
-            foreach (var v in list)
-            {
-                returnList.Add(v);
+                returnList = db.Table<TaxRate>().ToList();
             }
             return returnList;
         }
 
         public TaxRate GetTaxRate(int id)
         {
-            TaxRate taxRate = new TaxRate();
+            TaxRate taxRate;
             using (var db = new SQLiteConnection(fullPath))
             {
                 taxRate = db.Get<TaxRate>(id);
-                db.Close();
             }
             return taxRate;
         }
 
         public List<Entry> GetEntries()
         {
-            List<Entry> returnList = new List<Entry>();
+            List<Entry> returnList;
             using (var db = new SQLiteConnection(fullPath))
             {
-                var list = db.Table<Entry>();
-                returnList = ConvertToList(list);
-                db.Close();
+                returnList = db.Table<Entry>().OrderBy(e => e.Date).ToList();
             }
             return returnList;
         }
@@ -143,7 +122,6 @@ namespace Bookkeeper
             using (var db = new SQLiteConnection(fullPath))
             {
                 account = db.Table<Account>().Where(a => a.Number.Equals(id)).First();
-                db.Close();
             }
             return account;
         }

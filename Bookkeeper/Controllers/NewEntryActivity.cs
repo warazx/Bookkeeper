@@ -16,7 +16,7 @@ using System.Text.RegularExpressions;
 
 namespace Bookkeeper.Controllers
 {
-    [Activity(Label = "New Entry")]
+    [Activity(Label = "Ny händelse")]
     public class NewEntryActivity : Activity
     {
         Entry entry;

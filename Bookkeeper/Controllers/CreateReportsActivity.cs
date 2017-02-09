@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace Bookkeeper.Controllers
 {
-    [Activity(Label = "CreateReportsActivity")]
+    [Activity(Label = "Skapa rapporter")]
     public class CreateReportsActivity : Activity
     {
         Button taxReportBtn;

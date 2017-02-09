@@ -39,7 +39,7 @@ namespace Bookkeeper.Models
 
         public override string ToString()
         {
-            return "" + Id + ": " + Total + "kr till: " + AccountID;
+            return "" + Date.ToString("yyyy-MM-dd") + " - " + Description + " : " + Total + " kr"; 
         }
     }
 }

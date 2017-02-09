@@ -13,7 +13,7 @@ using Bookkeeper.Utils;
 
 namespace Bookkeeper.Controllers
 {
-    [Activity(Label = "ShowAllEntriesActivity")]
+    [Activity(Label = "Visa alla händelser")]
     public class ShowAllEntriesActivity : Activity
     {
         ListView entryListView;

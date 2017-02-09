@@ -33,12 +33,16 @@
         <TextView
             android:text="@string/NewEntryDateLabel"
             android:id="@+id/newEntryDateLabel"
+            android:layout_weight=".30"
+            android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
         <Button
             android:text="@string/NewEntryDateBtnLabel"
             android:id="@+id/newEntryDateBtn"
-            android:layout_width="match_parent"
+            android:layout_weight=".70"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent" />
     </LinearLayout>
     <LinearLayout
@@ -50,11 +54,15 @@
         <TextView
             android:text="@string/NewEntryDescriptionLabel"
             android:id="@+id/NewEntryDescriptionLabel"
+            android:layout_weight=".30"
+            android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
         <EditText
             android:id="@+id/NewEntryDescription"
-            android:layout_width="match_parent"
+            android:layout_weight=".70"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent" />
     </LinearLayout>
     <LinearLayout
@@ -66,12 +74,16 @@
         <TextView
             android:text="@string/NewEntryTypeLabel"
             android:id="@+id/NewEntryTypeLabel"
+            android:layout_height="match_parent"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_weight=".30"
+            android:layout_gravity="left" />
         <Spinner
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/NewEntrySpinType" />
+            android:layout_width="wrap_content"
+            android:id="@+id/NewEntrySpinType"
+            android:layout_weight=".70"
+            android:layout_gravity="right" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -82,10 +94,14 @@
         <TextView
             android:text="@string/NewEntryAccountLabel"
             android:id="@+id/NewEntryAccountLabel"
+            android:layout_weight=".30"
+            android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
         <Spinner
-            android:layout_width="match_parent"
+            android:layout_weight=".70"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/NewEntrySpinAccount"
             android:layout_marginLeft="0.0dp" />
@@ -99,11 +115,15 @@
         <TextView
             android:text="@string/NewEntryTotalLabel"
             android:id="@+id/NewEntryTotalLabel"
+            android:layout_weight=".30"
+            android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
         <EditText
             android:id="@+id/NewEntryTotal"
-            android:layout_width="match_parent"
+            android:layout_weight=".70"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:inputType="number" />
     </LinearLayout>
@@ -116,12 +136,16 @@
         <TextView
             android:text="@string/NewEntryTotalExMomsLabel"
             android:id="@+id/NewEntryTotalExMomsLabel"
+            android:layout_weight=".30"
+            android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
         <TextView
             android:text="@string/noValue"
             android:id="@+id/NewEntryTotalExMoms"
-            android:layout_width="match_parent"
+            android:layout_weight=".70"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent" />
     </LinearLayout>
     <LinearLayout
@@ -133,11 +157,15 @@
         <TextView
             android:text="@string/NewEntryTaxLabel"
             android:id="@+id/NewEntryTaxLabel"
+            android:layout_weight=".30"
+            android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
         <Spinner
             android:id="@+id/NewEntrySpinTax"
-            android:layout_width="match_parent"
+            android:layout_weight=".70"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent" />
     </LinearLayout>
     <Button
