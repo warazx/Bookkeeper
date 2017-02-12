@@ -9,11 +9,14 @@ namespace Bookkeeper
 {
     public class BookkeeperManager
     {
-        public static string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-        public static string fullPath = path + "/database.db";
+        private static string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+        private static string fullPath = path + "/database.db";
 
         private static BookkeeperManager instance;
 
+        /// <summary>
+        /// Used to get the Singleton instance of BookkeeperManager.
+        /// </summary>
         public static BookkeeperManager Instance
         {
             get
@@ -26,7 +29,10 @@ namespace Bookkeeper
             }
         }
 
-        public BookkeeperManager()
+        /// <summary>
+        /// Used to initialize the BookkeeperManager class. On the first init, creates tables in the database and adds all accounts and tax rates to them.
+        /// </summary>
+        private BookkeeperManager()
         {
             using (var db = new SQLiteConnection(fullPath))
             {
@@ -59,9 +65,8 @@ namespace Bookkeeper
         }
 
         /// <summary>
-        /// Adds the entry to the database.
+        /// Used to add an entry to the database.
         /// </summary>
-        /// <param name="entry"></param>
         public void addEntry(Entry entry)
         {
             using (var db = new SQLiteConnection(fullPath))
@@ -70,6 +75,9 @@ namespace Bookkeeper
             }            
         }
 
+        /// <summary>
+        /// Used to get a list of a specific AccountType from the database.
+        /// </summary>
         public List<Account> GetAccounts(AccountType type)
         {
             List<Account> returnList;
@@ -80,6 +88,9 @@ namespace Bookkeeper
             return returnList;
         }
 
+        /// <summary>
+        /// Used to get a list of all accounts from the database.
+        /// </summary>
         public List<Account> GetAccounts()
         {
             List<Account> returnList;
@@ -90,6 +101,9 @@ namespace Bookkeeper
             return returnList;
         }
 
+        /// <summary>
+        /// Used to get a list of all TaxRates from the database.
+        /// </summary>
         public List<TaxRate> GetTaxRates()
         {
             List<TaxRate> returnList;
@@ -100,6 +114,9 @@ namespace Bookkeeper
             return returnList;
         }
 
+        /// <summary>
+        /// Used to get a specific TaxRate based on ID from the database.
+        /// </summary>
         public TaxRate GetTaxRate(int id)
         {
             TaxRate taxRate;
@@ -110,6 +127,9 @@ namespace Bookkeeper
             return taxRate;
         }
 
+        /// <summary>
+        /// Used to get a list of all entries from the database.
+        /// </summary>
         public List<Entry> GetEntries()
         {
             List<Entry> returnList;
@@ -120,6 +140,9 @@ namespace Bookkeeper
             return returnList;
         }
 
+        /// <summary>
+        /// Used to get an Account with a specified ID from the database.
+        /// </summary>
         public Account GetAccount(int id)
         {
             Account account;
@@ -130,6 +153,9 @@ namespace Bookkeeper
             return account;
         }
 
+        /// <summary>
+        /// Used to get an entry with a specified ID from the database.
+        /// </summary>
         public Entry GetEntry(int id)
         {
             Entry entry;
@@ -140,6 +166,9 @@ namespace Bookkeeper
             return entry;
         }
 
+        /// <summary>
+        /// Used to update a specific entry in the database.
+        /// </summary>
         public void UpdateEntry(Entry entry)
         {
             using (var db = new SQLiteConnection(fullPath))
@@ -148,6 +177,9 @@ namespace Bookkeeper
             }
         }
 
+        /// <summary>
+        /// Used to generate a string with a tax report based on all entries.
+        /// </summary>
         public string GetTaxReport()
         {
             List<Entry> entries = GetEntries();
@@ -173,6 +205,9 @@ namespace Bookkeeper
             return toReturn;
         }
 
+        /// <summary>
+        /// Used to generate a string with an account report based on all entries.
+        /// </summary>
         public string GetAccountReport()
         {
             List<Account> accounts = GetAccounts();

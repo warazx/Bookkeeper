@@ -1,12 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Bookkeeper.Models;
@@ -20,9 +16,12 @@ namespace Bookkeeper.Utils
         Activity context;
         List<Entry> entries;
 
+        /// <summary>
+        /// Used to create an EntryAdapter to display all entries.
+        /// </summary>
         public EntryAdapter(Activity context)
         {
-            bm = new BookkeeperManager();
+            bm = BookkeeperManager.Instance;
             this.context = context;
             entries = bm.GetEntries();
         }
@@ -41,11 +40,6 @@ namespace Bookkeeper.Utils
             {
                 return entries.Count;
             }
-        }
-
-        public override Java.Lang.Object GetItem(int position)
-        {
-            return new JavaObjectWrapper() { obj = entries[position] };
         }
 
         public override long GetItemId(int position)

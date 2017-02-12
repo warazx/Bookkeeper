@@ -21,24 +21,24 @@ namespace Bookkeeper.Controllers
             showAllEntries = FindViewById<Button>(Resource.Id.showAllEntriesBtn);
             createReports = FindViewById<Button>(Resource.Id.createReportsBtn);
 
-            newEntryBtn.Click += NewEntryBtn_Click;
-            showAllEntries.Click += ShowAllEntries_Click;
-            createReports.Click += CreateReports_Click;
+            newEntryBtn.Click += NewEntryBtnOnClick;
+            showAllEntries.Click += ShowAllEntriesOnClick;
+            createReports.Click += CreateReportsOnClick;
         }
 
-        private void CreateReports_Click(object sender, System.EventArgs e)
+        private void CreateReportsOnClick(object sender, System.EventArgs e)
         {
             Intent intent = new Intent(this, typeof(CreateReportsActivity));
             StartActivity(intent);
         }
 
-        private void ShowAllEntries_Click(object sender, System.EventArgs e)
+        private void ShowAllEntriesOnClick(object sender, System.EventArgs e)
         {
             Intent intent = new Intent(this, typeof(ShowAllEntriesActivity));
             StartActivity(intent);
         }
 
-        private void NewEntryBtn_Click(object sender, System.EventArgs e)
+        private void NewEntryBtnOnClick(object sender, System.EventArgs e)
         {
             Intent intent = new Intent(this, typeof(NewEntryActivity));
             StartActivity(intent);

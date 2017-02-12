@@ -65,17 +65,17 @@ namespace Bookkeeper.Controllers
 
         private void initDelegates()
         {
-            rBtnGroup.CheckedChange += RBtnGroup_CheckedChange;
+            rBtnGroup.CheckedChange += RBtnGroupOnCheckedChange;
             dateBtn.Click += DateBtn_Click;
-            descriptionText.TextChanged += DescriptionText_TextChanged;
-            typeSpin.ItemSelected += TypeSpin_ItemSelected;
-            accountSpin.ItemSelected += AccountSpin_ItemSelected;                      
-            totalText.TextChanged += TotalText_TextChanged;
-            taxSpin.ItemSelected += TaxSpin_ItemSelected;
-            addBtn.Click += AddBtn_Click;
+            descriptionText.TextChanged += DescriptionTextOnTextChanged;
+            typeSpin.ItemSelected += TypeSpinOnItemSelected;
+            accountSpin.ItemSelected += AccountSpinOnItemSelected;                      
+            totalText.TextChanged += TotalTextOnTextChanged;
+            taxSpin.ItemSelected += TaxSpinOnItemSelected;
+            addBtn.Click += AddBtnOnClick;
         }
 
-        private void AccountSpin_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        private void AccountSpinOnItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
             var account = (Account)spinner.SelectedItem;
@@ -83,7 +83,7 @@ namespace Bookkeeper.Controllers
             entry.AccountID = id;
         }
 
-        private void TypeSpin_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        private void TypeSpinOnItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
             var account = (Account)spinner.SelectedItem;
@@ -91,7 +91,7 @@ namespace Bookkeeper.Controllers
             entry.TypeID = id;
         }
 
-        private void DescriptionText_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        private void DescriptionTextOnTextChanged(object sender, Android.Text.TextChangedEventArgs e)
         {
             entry.Description = descriptionText.Text;
         }
@@ -141,7 +141,7 @@ namespace Bookkeeper.Controllers
             taxSpin.SetSelection(position);
         }
 
-        private void TaxSpin_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        private void TaxSpinOnItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
             var taxrate = (TaxRate)spinner.SelectedItem;
@@ -150,7 +150,7 @@ namespace Bookkeeper.Controllers
             ChangeTotalExMomsText();
         }
 
-        private void TotalText_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        private void TotalTextOnTextChanged(object sender, Android.Text.TextChangedEventArgs e)
         {
             if(totalText.Text.Length > 0)
             {
@@ -183,7 +183,7 @@ namespace Bookkeeper.Controllers
             frag.Show(FragmentManager, DatePickerFragment.TAG);
         }
 
-        private void AddBtn_Click(object sender, EventArgs e)
+        private void AddBtnOnClick(object sender, EventArgs e)
         {
             if(entry.Id != null)
             {
@@ -196,7 +196,7 @@ namespace Bookkeeper.Controllers
             Finish();
         }
 
-        private void RBtnGroup_CheckedChange(object sender, RadioGroup.CheckedChangeEventArgs e)
+        private void RBtnGroupOnCheckedChange(object sender, RadioGroup.CheckedChangeEventArgs e)
         {
             if(incomeRBtn.Checked)
             {
@@ -217,7 +217,7 @@ namespace Bookkeeper.Controllers
 
         private void bindLayout()
         {
-            bm = new BookkeeperManager();
+            bm = BookkeeperManager.Instance;
             rBtnGroup = FindViewById<RadioGroup>(Resource.Id.RBtnGroup);
             incomeRBtn = FindViewById<RadioButton>(Resource.Id.newEntryRBtnIncome);
             expenseRBtn = FindViewById<RadioButton>(Resource.Id.newEntryRBtnExpense);

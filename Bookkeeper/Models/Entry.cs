@@ -15,6 +15,9 @@ namespace Bookkeeper.Models
         public int Total { get; set; }
         public int TaxRateID { get; set; }
 
+        /// <summary>
+        /// Used to create a default Entry object.
+        /// </summary>
         public Entry()
         {
             IsIncome = true;
@@ -26,6 +29,9 @@ namespace Bookkeeper.Models
             TaxRateID = 0;
         }
 
+        /// <summary>
+        /// Used to create a specified Entry object.
+        /// </summary>
         public Entry(bool isIncome, DateTime date, string description, int typeID, int accountID, int total, int taxRateID)
         {
             IsIncome = isIncome;

@@ -89,7 +89,6 @@
     <Compile Include="Models\Account.cs" />
     <Compile Include="BookkeeperManager.cs" />
     <Compile Include="Models\Entry.cs" />
-    <Compile Include="Utils\JavaObjectWrapper.cs" />
     <Compile Include="Models\TaxRate.cs" />
     <Compile Include="Controllers\NewEntryActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
