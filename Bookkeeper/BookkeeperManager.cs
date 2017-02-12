@@ -58,11 +58,15 @@ namespace Bookkeeper
             }
         }
 
-        public void addEntry(Entry e)
+        /// <summary>
+        /// Adds the entry to the database.
+        /// </summary>
+        /// <param name="entry"></param>
+        public void addEntry(Entry entry)
         {
             using (var db = new SQLiteConnection(fullPath))
             {
-                db.Insert(e);
+                db.Insert(entry);
             }            
         }
 
