@@ -193,12 +193,12 @@ namespace Bookkeeper
                 if (entry.IsIncome)
                 {
                     totalTax += entryTax;
-                    toReturn += string.Format("Entry {0}: Moms: {1}\n", entry.Id, Math.Round(entryTax, 2));
+                    toReturn += string.Format("Händelse {0} {1}: {2}\n", entry.Id, entry.Description, Math.Round(entryTax, 2));
                 }
                 else
                 {
                     totalTax -= entryTax;
-                    toReturn += string.Format("Entry {0}: Moms: -{1}\n", entry.Id, Math.Round(entryTax, 2));
+                    toReturn += string.Format("Händelse {0} {1}: -{2}\n", entry.Id, entry.Description, Math.Round(entryTax, 2));
                 }
             }
             toReturn += string.Format("Rapport: Slutlig skatt = {0}", Math.Round(totalTax, 2));
@@ -223,24 +223,24 @@ namespace Bookkeeper
                 {
                     if(account.AccountType == AccountType.Income)
                     {
-                        accountString += string.Format("Entry {0}: Total: {1}\n", entry.Id, entry.Total);
+                        accountString += string.Format("Händelse {0} {1}: {2}\n", entry.Id, entry.Description, entry.Total);
                         accountTotal += entry.Total;
                     }
                     else if(account.AccountType == AccountType.Expense)
                     {
-                        accountString += string.Format("Entry {0}: Total: -{1}\n", entry.Id, entry.Total);
+                        accountString += string.Format("Händelse {0} {1}: -{2}\n", entry.Id, entry.Description, entry.Total);
                         accountTotal -= entry.Total;
                     }
                     else if(account.AccountType == AccountType.Money)
                     {
                         if (entry.IsIncome)
                         {
-                            accountString += string.Format("Entry {0}: Total: {1}\n", entry.Id, entry.Total);
+                            accountString += string.Format("Händelse {0} {1}: {2}\n", entry.Id, entry.Description, entry.Total);
                             accountTotal += entry.Total;
                         }
                         else
                         {
-                            accountString += string.Format("Entry {0}: Total: -{1}\n", entry.Id, entry.Total);
+                            accountString += string.Format("Händelse {0} {1}: -{2}\n", entry.Id, entry.Description, entry.Total);
                             accountTotal -= entry.Total;
                         }
                     }
